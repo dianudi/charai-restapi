@@ -1,0 +1,28 @@
+{
+  "name": "charai-restapi",
+  "version": "1.0.0",
+  "description": "CharacterAI rest API suitable for consume on local project.",
+  "main": "index.js",
+  "repository": "https://github.com/dianudi/charai-restapi",
+  "author": "dianudi <144350056+dianudi@users.noreply.github.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "NODE_ENV=production node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.2.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "node_characterai": "^1.2.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.2",
+    "supertest": "^6.3.3"
+  }
+}
