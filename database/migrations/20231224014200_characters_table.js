@@ -2,14 +2,24 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
-  
-};
+async function up(knex) {
+  await knex.schema.createTable("characters", (table) => {
+    table.increments();
+    table.string("name").notNullable();
+    table.string("short_description").nullable();
+    table.string("description").nullable();
+    table.string("char_id").notNullable().unique();
+    table.string("gender").nullable();
+    table.timestamps();
+  });
+}
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
-  
-};
+async function down(knex) {
+  await knex.schema.dropTable("characters");
+}
+
+export { up, down };
