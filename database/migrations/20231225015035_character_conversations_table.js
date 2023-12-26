@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 async function up(knex) {
-  await knex.schema.createTable("character_conversation", (table) => {
+  await knex.schema.createTable("character_conversations", (table) => {
     table.increments();
     table.integer("consume_application_id").notNullable().unsigned();
     table.foreign("consume_application_id").references("id").inTable("consume_applications").onDelete("cascade").onUpdate("cascade");

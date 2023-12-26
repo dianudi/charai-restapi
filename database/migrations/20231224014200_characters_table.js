@@ -10,7 +10,7 @@ async function up(knex) {
     table.string("description").nullable();
     table.string("char_id").notNullable().unique();
     table.string("gender").nullable();
-    table.timestamps();
+    table.timestamps(true, true);
   });
 }
 
