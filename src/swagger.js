@@ -24,7 +24,7 @@ const rootSpec = swaggerJsdoc({
       },
     ],
   },
-  apis: ["dist/routes/*.js"],
+  apis: ["src/routes/*.js"],
 });
 
 export { rootSpec };

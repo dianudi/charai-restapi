@@ -7,7 +7,7 @@ const ai = new Cai();
 if (env.ENV == "staging") {
   ai.authenticateAsGuest();
 } else {
-  ai.authenticateWithToken(env.CAI_TOKEN);
+  // ai.authenticateWithToken(env.CAI_TOKEN);
 }
 if (env.CHROMIUM_PATH) {
   ai.requester.puppeteerPath = env.CHROMIUM_PATH;
