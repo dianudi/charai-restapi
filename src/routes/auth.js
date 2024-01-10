@@ -14,12 +14,24 @@ import { auth } from "../controllers/authController.js";
  * security:
  *   - BearerAuth: []
  *
- * /auth:
+ * /api/auth:
  *   post:
- *     summary: Login.
- *     description: Authentication.
+ *     summary: Get access token.
+ *     description: Authentication to get access token.
  *     tags:
  *       - Authentication
+ *     requestBody:
+ *       description: Required parameters to send.
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *                 description: Password.
+ *                 example: 0123456789
  *     responses:
  *       200:
  *         description: Return JWT token used in Authorizatio http header type bearer.
@@ -45,18 +57,6 @@ import { auth } from "../controllers/authController.js";
  *                 msg:
  *                   type: string
  *                   example: Wrong Password
- *     requestBody:
- *       description: Required parameters to send.
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               password:
- *                 type: string
- *                 description: Password.
- *                 example: 0123456789
  */
 const r = Router();
 r.route("/api/auth").post(auth);

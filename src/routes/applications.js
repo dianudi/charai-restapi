@@ -26,28 +26,28 @@ const r = Router();
  *                 properties:
  *                   id:
  *                     type: integer
- *                     description: Unique ID
+ *                     description: Unique ID.
  *                     example: 1
  *                   name:
  *                     type: string
- *                     description: Name of consume application
+ *                     description: Name of consume application.
  *                     example: My Assistant
  *                   access_token:
  *                     type: string
- *                     description: Access token for authorizing
+ *                     description: Access token for authorizing chat.
  *                     example: blablabla
  *                   mutiple_conversation:
  *                     type: boolean
- *                     description: Can consume application make more conversation
+ *                     description: Can consume application make more conversation.
  *                     example: true
  *                   created_at:
  *                     type: string
- *                     description: Created at
+ *                     description: Created at.
  *                   updated_at:
  *                     type: string
- *                     description: Updated at
+ *                     description: Updated at.
  *       401:
- *         description: Unauthorized
+ *         description: Unauthorized action.
  *         content:
  *           application/json:
  *             schema:
@@ -57,8 +57,8 @@ const r = Router();
  *                   type: string
  *                   example: Unauthorized
  *   post:
- *     description: Add new consume application
- *     summary: Add new consume application
+ *     description: Add new consume application.
+ *     summary: Add new consume application.
  *     tags:
  *       - Application
  *     security:
@@ -83,7 +83,7 @@ const r = Router();
  *                 description: Can consume application make more conversation.
  *     responses:
  *       201:
- *         description: Success created new consume application
+ *         description: Success created new consume application.
  *         content:
  *           application/json:
  *             schema:
@@ -125,7 +125,7 @@ const r = Router();
  *
  *
  *       401:
- *         description: Unauthorized
+ *         description: Unauthorized action.
  *         content:
  *           application/json:
  *             schema:
@@ -138,7 +138,7 @@ const r = Router();
  * /api/applications/{id}:
  *   get:
  *     description: Return detail of consume application.
- *     summary: Get all consume application.
+ *     summary: Get detail consume application.
  *     tags:
  *       - Application
  *     security:
@@ -162,30 +162,41 @@ const r = Router();
  *                   type: object
  *                   properties:
  *                     id:
- *                     type: integer
- *                     description: Unique ID
- *                     example: 1
+ *                       type: integer
+ *                       description: Unique ID.
+ *                       example: 1
  *                     name:
  *                       type: string
- *                       description: Name of consume application
+ *                       description: Name of consume application.
  *                       example: My Assistant
  *                     access_token:
  *                       type: string
- *                       description: Access token for authorizing
+ *                       description: Access token for authorizing.
  *                       example: blablabla
  *                     mutiple_conversation:
  *                       type: boolean
- *                       description: Can consume application make more conversation
+ *                       description: Can consume application make more conversation.
  *                       example: true
  *                     created_at:
  *                       type: string
- *                       description: Created at
+ *                       description: Created at.
  *                     updated_at:
  *                       type: string
- *                       description: Updated at
+ *                       description: Updated at.
+ * 
+ *       401:
+ *         description: Unauthorized action.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Unauthorized
  *                 
  *       404:
- *         description: Not found
+ *         description: Not found.
  *         content:
  *           application/json:
  *             schema:
@@ -196,8 +207,8 @@ const r = Router();
  *                   example: Not Found
  * 
  *   patch:
- *     description: Update consume application
- *     summary: Update consume application
+ *     description: Update consume application.
+ *     summary: Update consume application.
  *     tags:
  *       - Application
  *     security:
@@ -205,7 +216,7 @@ const r = Router();
  *     parameters:
  *       - name: id
  *         in: path
- *         description: Application ID
+ *         description: Application ID.
  *         required: true
  *         schema:
  *           type: integer
@@ -229,7 +240,7 @@ const r = Router();
  *                 description: Can consume application make more conversation.
  *     responses:
  *       201:
- *         description: Success updated new consume application
+ *         description: Success updated new consume application.
  *         content:
  *           application/json:
  *             schema:
@@ -239,6 +250,27 @@ const r = Router();
  *                   type: string
  *                   example: Updated
 
+ *       401:
+ *         description: Unauthorized action.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Unauthorized
+ *       404:
+ *         description: Not found.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Not Found
+ * 
  *       422:
  *         description: Validation failed.
  *         content:
@@ -262,16 +294,41 @@ const r = Router();
  *                         example: Name can't empty
  *                       path:
  *                         type: string
- *                         description: Field of error
+ *                         description: Field of error.
  *                         example: name
  *                       type:
  *                         type: string
- *                         description: Type
+ *                         description: Type.
  *                         example: field
  *
- *
+ *   delete:
+ *     description: Delete consume application.
+ *     summary: Delete consume application.
+ *     tags:
+ *       - Application
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: Application ID.
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Success deleted consume application.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: Deleted
+ * 
  *       401:
- *         description: Unauthorized
+ *         description: Unauthorized action.
  *         content:
  *           application/json:
  *             schema:
@@ -281,52 +338,6 @@ const r = Router();
  *                   type: string
  *                   example: Unauthorized
  *       404:
- *         description: Not found
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 msg:
- *                   type: string
- *                   example: Not Found
- * 
- *   delete:
- *     description: Delete consume application
- *     summary: Delete consume application
- *     tags:
- *       - Application
- *     security:
- *       - BearerAuth: []
- *     parameters:
- *       - name: id
- *         in: path
- *         description: Application ID
- *         required: true
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: Success deleted consume application
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 msg:
- *                   type: string
- *                   example: Deleted
- *       401:
- *         description: Unauthorized
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 msg:
- *                   type: string
- *                   example: Unauthorized
-  *       404:
  *         description: Not found
  *         content:
  *           application/json:
