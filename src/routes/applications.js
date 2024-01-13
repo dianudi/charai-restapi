@@ -239,7 +239,7 @@ const r = Router();
  *                 type: boolean
  *                 description: Can consume application make more conversation.
  *     responses:
- *       201:
+ *       200:
  *         description: Success updated new consume application.
  *         content:
  *           application/json:

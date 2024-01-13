@@ -276,7 +276,7 @@ const r = Router();
  *                 description: Unique Character ID.
  *                 example: randomstring
  *     responses:
- *       201:
+ *       200:
  *         description: Success updated ai character.
  *         content:
  *           application/json:
