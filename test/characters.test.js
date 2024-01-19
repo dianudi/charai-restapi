@@ -10,7 +10,7 @@ beforeAll(async () => {
 });
 
 describe("Add new AI Character", () => {
-  test("should success create new ai character", async () => {
+  test("should success create new AI Character", async () => {
     const res = await supertest(app)
       .post("/api/characters")
       .accept("application/json")
@@ -18,7 +18,7 @@ describe("Add new AI Character", () => {
       .send({ name: "testing", short_description: "testing", description: "testing", char_id: "123abcd", gender: "male" });
     expect(res.status).toBe(201);
   });
-  test("should return error when validation failed add data", async () => {
+  test("should return error when validation failed", async () => {
     const res = await supertest(app)
       .post("/api/applications")
       .accept("application/json")
@@ -30,14 +30,14 @@ describe("Add new AI Character", () => {
 });
 
 describe("Get all AI Characters", () => {
-  test("should has many new consume application data", async () => {
+  test("should has many AI Characters", async () => {
     const res = await supertest(app).get("/api/characters").accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res.ok).toBe(true);
   });
 });
 
 describe("Update some AI Character", () => {
-  test("should success update data", async () => {
+  test("should success update", async () => {
     const res = await supertest(app).get("/api/characters").accept("application/json").set("Authorization", `Bearer ${token}`);
     const [data] = res.body.data.filter((i) => i.name == "testing");
     const res2 = await supertest(app)
@@ -47,7 +47,7 @@ describe("Update some AI Character", () => {
       .send({ name: "testing", short_description: "testing updated", description: "updated testing", char_id: "123abcd", gender: "female" });
     expect(res2.ok).toBe(true);
   });
-  test("should return error when validation failed update data", async () => {
+  test("should return error when validation failed", async () => {
     const res = await supertest(app).get("/api/characters").accept("application/json").set("Authorization", `Bearer ${token}`);
     const [data] = res.body.data.filter((i) => i.name == "testing");
     const res2 = await supertest(app)
@@ -57,7 +57,7 @@ describe("Update some AI Character", () => {
       .send({ name: "", short_description: "", description: "", char_id: "", gender: "" });
     expect(res2.statusCode).toBe(422);
   });
-  test("should return error not found update data", async () => {
+  test("should return error not found", async () => {
     const res = await supertest(app)
       .patch(`/api/characters/foobar`)
       .accept("application/json")
@@ -67,27 +67,27 @@ describe("Update some AI Character", () => {
   });
 });
 
-describe("Get some applications data", () => {
-  test("should return some application data", async () => {
+describe("Get some AI Character", () => {
+  test("should return some AI Character", async () => {
     const res = await supertest(app).get("/api/characters").accept("application/json").set("Authorization", `Bearer ${token}`);
     const [data] = res.body.data.filter((i) => i.name == "testing");
     const res2 = await supertest(app).get(`/api/characters/${data.id}`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res2.ok).toBe(true);
   });
-  test("should return error not found get data", async () => {
+  test("should return error not found", async () => {
     const res = await supertest(app).get(`/api/characters/foobar`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res.statusCode).toBe(404);
   });
 });
 
-describe("Delete some application data", () => {
-  test("should success delete some application data", async () => {
+describe("Delete some AI Character", () => {
+  test("should success delete some AI Character", async () => {
     const res = await supertest(app).get("/api/characters").accept("application/json").set("Authorization", `Bearer ${token}`);
     const [data] = res.body.data.filter((i) => i.name == "testing");
     const res2 = await supertest(app).delete(`/api/characters/${data.id}`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res2.ok).toBe(true);
   });
-  test("should return error not found delete data", async () => {
+  test("should return error not found", async () => {
     const res = await supertest(app).delete(`/api/characters/foobar`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res.statusCode).toBe(404);
   });

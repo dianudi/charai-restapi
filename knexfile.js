@@ -7,7 +7,7 @@ export default {
   development: {
     client: "better-sqlite3",
     connection: {
-      filename: "./database/data/db.sqlite3",
+      filename: "./storage/db.sqlite3",
     },
     migrations: {
       tableName: "knex_migrations",
@@ -18,7 +18,7 @@ export default {
   staging: {
     client: "better-sqlite3",
     connection: {
-      filename: "./database/data/db.sqlite3",
+      filename: "./storage/db.sqlite3",
     },
     migrations: {
       tableName: "knex_migrations",
@@ -29,7 +29,7 @@ export default {
   production: {
     client: "better-sqlite3",
     connection: {
-      filename: "./database/data/db.sqlite3",
+      filename: "./storage/db.sqlite3",
     },
     migrations: {
       tableName: "knex_migrations",

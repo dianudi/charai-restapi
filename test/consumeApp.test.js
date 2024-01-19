@@ -18,7 +18,7 @@ describe("Add new consume application", () => {
       .send({ name: "testing", description: "testing", multiple_conversation: true });
     expect(res.status).toBe(201);
   });
-  test("should return error when validation failed add data", async () => {
+  test("should return error when validation failed", async () => {
     const res = await supertest(app)
       .post("/api/applications")
       .accept("application/json")
@@ -29,7 +29,7 @@ describe("Add new consume application", () => {
 });
 
 describe("Get all consume application data", () => {
-  test("should has many new consume application data", async () => {
+  test("should has many consume application data", async () => {
     const res = await supertest(app).get("/api/applications").accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res.ok).toBe(true);
   });
@@ -46,7 +46,7 @@ describe("Update some consume application data", () => {
       .send({ name: "testing", description: "updated", multiple_conversation: false });
     expect(res2.ok).toBe(true);
   });
-  test("should return error when validation failed update data", async () => {
+  test("should return error when validation failed", async () => {
     const res = await supertest(app).get("/api/applications").accept("application/json").set("Authorization", `Bearer ${token}`);
     const [data] = res.body.data.filter((i) => i.name == "testing");
     const res2 = await supertest(app)
@@ -56,7 +56,7 @@ describe("Update some consume application data", () => {
       .send({ name: "", description: "", multiple_conversation: "bar" });
     expect(res2.statusCode).toBe(422);
   });
-  test("should return error not found update data", async () => {
+  test("should return error not found", async () => {
     const res = await supertest(app)
       .patch(`/api/applications/foobar`)
       .accept("application/json")
@@ -73,7 +73,7 @@ describe("Get some applications data", () => {
     const res2 = await supertest(app).get(`/api/applications/${data.id}`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res2.ok).toBe(true);
   });
-  test("should return error not found get data", async () => {
+  test("should return error not found", async () => {
     const res = await supertest(app).get(`/api/applications/foobar`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res.statusCode).toBe(404);
   });
@@ -86,7 +86,7 @@ describe("Delete some application data", () => {
     const res2 = await supertest(app).delete(`/api/applications/${data.id}`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res2.ok).toBe(true);
   });
-  test("should return error not found delete data", async () => {
+  test("should return error not found", async () => {
     const res = await supertest(app).delete(`/api/applications/foobar`).accept("application/json").set("Authorization", `Bearer ${token}`);
     expect(res.statusCode).toBe(404);
   });
