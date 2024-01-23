@@ -55,9 +55,9 @@ const r = Router();
  *                   description: Is new conversation.
  *                   example: true
  *                 conversation_id:
- *                   type: string
+ *                   type: integer
  *                   description: Conversation id if new_conversation is true.
- *                   example: randomstring
+ *                   example: 1
 
  *       401:
  *         description: Unauthorized acton.

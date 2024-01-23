@@ -3170,10 +3170,10 @@ node-releases@^2.0.14:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.14.tgz#2ffb053bceb8b2be8495ece1ab6ce600c4461b0b"
   integrity sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==
 
-node_characterai@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/node_characterai/-/node_characterai-1.2.1.tgz#f45ab16b66fa865c811520a9dacd7d1a8f1286fe"
-  integrity sha512-Y0Jwb4X8gXlNGsD8DjOenN9wAzqn1l8dDaDTqI/L5mnRvoCm4yLtocuiN+zAlwjx9ZSsjGFBRQUkBNfi9lKyYA==
+node_characterai@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/node_characterai/-/node_characterai-1.2.4.tgz#70c870b307b431870d716a61622239ab6d02cb9b"
+  integrity sha512-xiQskpYzmDuepiBqGBf7nL+aTtX76Gf9Wz3DZQ94cu9ASPmE8fN9KHGIOwm+3h033UIAKlo+0i7h4JP8tMaO9w==
   dependencies:
     jimp "^0.22.8"
     json-bigint "^1.0.0"

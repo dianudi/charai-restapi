@@ -5,11 +5,11 @@ import db from "../db.js";
 async function chat(req, res) {
   try {
     let newConversation = false;
-    let conversationId = null;
     const { character_id, conversation_id = null, message } = matchedData(req);
-    const character = await db("characters").select("char_id").where("id", character_id).first();
+    let conversationId = conversation_id;
+    const character = await db("characters").select("id", "char_id").where("id", character_id).first();
     const conversation = conversation_id ? await db("character_conversations").select("conversation_id").where("id", conversation_id).first() : null;
-    const chatAi = await ai.createOrContinueChat(character.char_id, conversation.conversation_id);
+    const chatAi = await ai.createOrContinueChat(character.char_id, conversation && conversation.conversation_id);
     if (!conversation) {
       const consumeApp = await db("consume_applications").select("id", "multiple_conversation").where("access_token", req.headers["x-access-token"]).first();
       const [hasManyConversation] = await db("character_conversations").count("id as count").where("consume_application_id", consumeApp.id);
@@ -24,9 +24,10 @@ async function chat(req, res) {
       });
       newConversation = true;
     }
-    const res = await chatAi.sendAndAwaitResponse(message, true);
-    return res.status(200).json({ msg: res.text, new_conversation: newConversation, conversation_id: conversationId });
+    const resAI = await chatAi.sendAndAwaitResponse(message, true);
+    return res.status(200).json({ msg: resAI.text, new_conversation: newConversation, conversation_id: conversationId });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ msg: "Something went wrong" });
   }
 }
