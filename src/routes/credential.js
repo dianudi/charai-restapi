@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { auth } from "../middlewares/auth.js";
+import { updateCredential } from "../requests/credentialRequest.js";
+import { updateToken } from "../controllers/credentialController.js";
 
 const r = Router();
 /**
  * @swagger
  * /api/credential:
- *   get:
+ *   patch:
  *     description: Update Character AI token for authorized action.
  *     summary: Update Character AI token.
  *     tags:
@@ -19,13 +21,9 @@ const r = Router();
  *           schema:
  *             type: object
  *             properties:
- *               access_token:
+ *               session_token:
  *                 type: string
- *                 description: Access token from local storage.
- *                 example: randomstring
- *               id_token:
- *                 type: string
- *                 description: ID Token from local storage
+ *                 description: Session token from local storage.
  *                 example: randomstring
  *     responses:
  *       200:
@@ -82,5 +80,5 @@ const r = Router();
  *
  */
 r.use("/api/credential", auth);
-r.route("/api/credential").patch();
+r.route("/api/credential").patch(updateCredential, updateToken);
 export default r;
