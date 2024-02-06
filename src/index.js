@@ -4,6 +4,7 @@ import swagger from "swagger-ui-express";
 import { rootSpec } from "./swagger.js";
 import { resolve } from "node:path";
 import { writeFileSync, existsSync } from "node:fs";
+import log from "./log.js";
 
 if (!existsSync(resolve("storage/credential.json"))) writeFileSync(resolve("storage/credential.json"), JSON.stringify({ session_token: "" }));
 
@@ -19,4 +20,4 @@ app.use((err, req, res) => {
     return res.status(500);
   }
 });
-app.listen(3000, console.log("App Running🚀"));
+app.listen(3000, log.info("App Running🚀"));

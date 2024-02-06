@@ -1,5 +1,6 @@
 import { matchedData } from "express-validator";
 import db from "../db.js";
+import log from "../log.js";
 
 async function index(req, res) {
   try {
@@ -12,6 +13,7 @@ async function index(req, res) {
     }
     return res.status(200).json({ data });
   } catch (error) {
+    log.error(error.message);
     return res.sendStatus(500);
   }
 }
@@ -21,6 +23,7 @@ async function store(req, res) {
     await db("characters").insert({ ...matchedData(req) });
     return res.status(201).json({ msg: "Created" });
   } catch (error) {
+    log.error(error.message);
     return res.sendStatus(500);
   }
 }
@@ -32,6 +35,7 @@ async function show(req, res) {
     const [conversation] = await db("character_conversations").count("id as count").where("character_id", data.id);
     return res.status(200).json({ data: { ...data, conversation_count: conversation.count } });
   } catch (error) {
+    log.error(error.message);
     return res.sendStatus(500);
   }
 }
@@ -45,6 +49,7 @@ async function update(req, res) {
       .where("id", req.params.id);
     return res.status(200).json({ msg: "Updated" });
   } catch (error) {
+    log.error(error.message);
     return res.sendStatus(500);
   }
 }
@@ -56,6 +61,7 @@ async function destroy(req, res) {
     await db("characters").where("id", req.params.id).delete();
     return res.status(200).json({ msg: "Deleted" });
   } catch (error) {
+    log.error(error.message);
     return res.sendStatus(500);
   }
 }

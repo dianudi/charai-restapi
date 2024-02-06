@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { env } from "node:process";
+import log from "../log.js";
 
 function auth(req, res, next) {
   if (!req.headers["authorization"]) return res.status(401).json({ msg: "Unauthorized" });
@@ -8,6 +9,7 @@ function auth(req, res, next) {
   try {
     jwt.verify(token, env.SECRET_KEY);
   } catch (error) {
+    log.error(error.message);
     return res.status(422).json({ msg: "Invalid JWT Token" });
   }
   next();

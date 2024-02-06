@@ -4,3 +4,4 @@ node_modules
 *.sqlite3
 config.json
 storage/credential.json
+storage/logs/*

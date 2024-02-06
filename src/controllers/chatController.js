@@ -1,6 +1,7 @@
 import ai from "../ai.js";
 import { matchedData } from "express-validator";
 import db from "../db.js";
+import log from "../log.js";
 
 async function chat(req, res) {
   try {
@@ -27,7 +28,7 @@ async function chat(req, res) {
     const resAI = await chatAi.sendAndAwaitResponse(message, true);
     return res.status(200).json({ msg: resAI.text, new_conversation: newConversation, conversation_id: conversationId });
   } catch (error) {
-    console.log(error);
+    log.error(error.message);
     return res.status(500).json({ msg: "Something went wrong" });
   }
 }
